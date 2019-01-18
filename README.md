@@ -44,10 +44,11 @@ The Pharmaceutical supply chain is the sequence of activities and process to bri
 
 #### Tools and Technologies
 ---
-- Solidity (Ethereum)
+- Solidity (Ethereum Smart Contract Language)
 - Metamask (Ethereum wallet)
-- Ganache test network 
+- Ropsten test network ( use ropsten faucet to get ethers on ropsten network )
 - Truffle
+- Infura
 - Web3JS 
 - AngularJS
 
@@ -80,26 +81,33 @@ module.exports =
 	   		port: 8545,
 	   		network_id: "*" // Match any network id
 		} 
-    }
+    },
+    ropsten: {
+    	provider: function() {
+                var mnemonic = "letter casino spread lawn water toward extend public gasp turn wave bone";//put ETH wallet 12 mnemonic code	
+                return new HDWalletProvider(mnemonic, "https://ropsten.infura.io/v3/"+infuraKey);
+		    },
+        gas: 8000000,
+        gasPrice: 60000000000,
+		network_id: '3'
+	}
 };
 ```
 Go to your project folder in terminal then execute :
 
 ```
 rm -rf build/
-npm install -g ganache-cli
-ganache-cli
 truffle compile 
-truffle migrate
+truffle migrate --network ropsten reset
 ```
 **Please note:**
 1. After successfully deployment you will get response in bash terminal like below
 ```
 Starting migrations...
 ======================
-> Network name:    'development'
-> Network id:      5777
-> Block gas limit: 6721975
+> Network name:    'ropsten'
+> Network id:      3
+> Block gas limit: 8007811
 
 
 1_initial_migration.js
@@ -107,25 +115,49 @@ Starting migrations...
 
    Deploying 'Migrations'
    ----------------------
-   > transaction hash:    0x75367f6f62cf5f2c05a2c1ffa97a5da3e8ee624ef4957cc27e9611f698709deb
-   > Blocks: 0            Seconds: 0
-   > contract address:    0x45fbF1DAC557bbEEe1b1505546f0CD6BEe21A9c4
-   > account:             0x8e2ec015314C9F9e3E7Cfb342621d6507E7C087a
-   > balance:             99.99430184
-   > gas used:            284908
-   > gas price:           20 gwei
+   > transaction hash:    0x22a002f941602ff792cb66ea26b7c9acea8fbde14a7343789e0ae4b349a9ff75
+   > Blocks: 1            Seconds: 109
+   > contract address:    0xC30C388ceD2f27691B1aD0E70c1B51D726343acb
+   > account:             0xdd56707585Bd9392500bBb30eEf767fb33299FF8
+   > balance:             4.00294387495
+   > gas used:            283300
+   > gas price:           60 gwei
    > value sent:          0 ETH
-   > total cost:          0.00569816 ETH
+   > total cost:          0.016998 ETH
 
 
    > Saving migration to chain.
    > Saving artifacts
    -------------------------------------
-   > Total cost:          0.00569816 ETH
+   > Total cost:            0.016998 ETH
+
+
+2_deploy_supplychain.js
+=======================
+[ '0xdd56707585Bd9392500bBb30eEf767fb33299FF8' ]
+
+   Deploying 'SupplyChain'
+   -----------------------
+   > transaction hash:    0xd05404fd8a8481e4c867052760f14b5b290473848a9956873df52785819e4946
+   > Blocks: 2            Seconds: 9
+   > contract address:    0xE384741Cb0346543D8f7d5b72d0ff3663FC548d4
+   > account:             0xdd56707585Bd9392500bBb30eEf767fb33299FF8
+   > balance:             3.61046395495
+   > gas used:            6499304
+   > gas price:           60 gwei
+   > value sent:          0 ETH
+   > total cost:          0.38995824 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.38995824 ETH
 
 
 Summary
 =======
-> Total deployments:   1
-> Final cost:          0.00569816 ETH
+> Total deployments:   2
+> Final cost:          0.40695624 ETH
+
 ```

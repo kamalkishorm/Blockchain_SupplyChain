@@ -22,7 +22,7 @@
  *
  */
 
-// const HDWallet = require('truffle-hdwallet-provider');
+const HDWalletProvider = require('truffle-hdwallet-provider');
 // const infuraKey = "fj4jll3k.....";
 //
 // const fs = require('fs');
@@ -50,8 +50,21 @@ module.exports = {
 		{
 	   		host: "localhost",
 	   		port: 8545,
-	   		network_id: "*" // Match any network id
+        gas: 8000000,
+        gasPrice: 60000000000,
+	   		network_id: '5777' // Match any network id
+
 		},
+    ropsten: {
+    	  provider: function() {
+		    var mnemonic = "letter casino spread lawn water toward extend public gasp turn wave bone";//put ETH wallet 12 mnemonic code	
+		    return new HDWalletProvider(mnemonic, "https://ropsten.infura.io/v3/8cf80ccb22dd4231b0b609cad3f58383");
+		  },
+      gas: 8000000,
+      gasPrice: 60000000000,
+		  network_id: '3'
+		  // from: '0xab0874cb61d.....',/*ETH wallet 12 mnemonic code wallet address*/
+		}  
 
     // Another network with more advanced options...
     // advanced: {
@@ -95,7 +108,7 @@ module.exports = {
       settings: {          // See the solidity docs for advice about optimization and evmVersion
        optimizer: {
          enabled: false,
-      //    runs: 200
+         runs: 200
        },
       //  evmVersion: "byzantium"
       }
