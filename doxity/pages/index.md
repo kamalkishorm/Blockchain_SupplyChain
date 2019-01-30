@@ -161,3 +161,14 @@ Summary
 > Final cost:          0.40695624 ETH
 
 ```
+
+#### Blockchain SupplyChain UI:
+---
+**Setting up SupplyChain UI:**
+
+```
+git clone https://github.com/kamalkishorm/Pharmaceutical_Supplychain-UI.git
+cd Pharmaceutical_Supplychain-UI/
+npm i
+ng serve
+```
