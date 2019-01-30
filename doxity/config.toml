@@ -1,4 +1,4 @@
-linkPrefix = ""
+linkPrefix = "blockchain_supplychain"
 name = "blockchain_supplychain"
 license = "ISC"
 version = "1.0.0"
