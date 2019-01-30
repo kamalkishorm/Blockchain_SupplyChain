@@ -1,11 +1,11 @@
-linkPrefix = "blockchain_supplychain"
+linkPrefix = ""
 name = "blockchain_supplychain"
 license = "ISC"
 version = "1.0.0"
 description = "Pharmaceutical SupplyChain using Ethereum Blockchain Network."
 homepage = "https://github.com/kamalkishorm/Blockchain_SupplyChain#readme"
 author = "Kamal Kishor Mehra"
-buildTime = 2019-01-30T14:41:24.789Z
+buildTime = 2019-01-30T16:54:17.796Z
 target = "doxity"
 src = "contracts/*"
 dir = "pages/docs"
