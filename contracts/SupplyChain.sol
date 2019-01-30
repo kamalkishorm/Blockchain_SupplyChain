@@ -8,7 +8,6 @@ contract SupplyChain {
 
     /// @notice
     /// @dev Initiate SupplyChain Contract
-    /// @return
     constructor () public {
         Owner = msg.sender;
     }
@@ -31,7 +30,7 @@ contract SupplyChain {
         distributer,
         pharma,
         revoke
-    }Wholesaler
+    }
 
     event UserRegister(address indexed EthAddress, bytes32 Name);
     event UserRoleRevoked(address indexed EthAddress, bytes32 Name, uint Role);
@@ -43,7 +42,6 @@ contract SupplyChain {
     /// @param Name User name
     /// @param Location User Location
     /// @param Role User Role
-    /// @return
     function registerUser(
         address EthAddress,
         bytes32 Name,
@@ -63,7 +61,6 @@ contract SupplyChain {
     /// @notice
     /// @dev Revoke users role
     /// @param userAddress User Ethereum Network Address
-    /// @return
     function revokeRole(address userAddress) public onlyOwner {
         require(UsersDetails[userAddress].role != roles.norole, "User not registered");
         emit UserRoleRevoked(userAddress, UsersDetails[userAddress].name,uint(UsersDetails[userAddress].role));
@@ -73,7 +70,6 @@ contract SupplyChain {
     /// @dev Reassigne new role to User
     /// @param userAddress User Ethereum Network Address
     /// @param Role Role to assigne
-    /// @return
     function reassigneRole(address userAddress, uint Role) public onlyOwner {
         require(UsersDetails[userAddress].role != roles.norole, "User not registered");
         UsersDetails[userAddress].role = roles(Role);
@@ -142,7 +138,6 @@ contract SupplyChain {
     /// @dev Create new raw package by Supplier
     /// @param Des Transporter Ethereum Network Address
     /// @param Rcvr Manufacturer Ethereum Network Address
-    /// @return
     function createRawPackage(
         bytes32 Des,
         bytes32 FN,
@@ -198,7 +193,6 @@ contract SupplyChain {
     /// @param pid PackageID or MadicineID
     /// @param transportertype Transporter Type on the basic of tx between Roles
     /// @param cid Sub Contract ID for Consingment transaction
-    /// @return
     function loadConsingment(
         address pid, //Package or Batch ID
         uint transportertype,
@@ -231,7 +225,6 @@ contract SupplyChain {
     /// @notice
     /// @dev Update Package / Madicine batch recieved status by ethier Manufacturer or Distributer
     /// @param pid  PackageID or MadicineID
-    /// @return
     function  rawPackageReceived(
         address pid
     ) public {
@@ -284,7 +277,6 @@ contract SupplyChain {
     /// @param Shpr Transporter Ethereum Network Address
     /// @param Rcvr Receiver Ethereum Network Address
     /// @param RcvrType Receiver Type Ethier Wholesaler(1) or Distributer(2)
-    /// @return
     function manufacturMadicine(
         bytes32 Des,
         bytes32 RM,
@@ -348,7 +340,6 @@ contract SupplyChain {
     /// @dev Madicine Batch Received
     /// @param batchid Madicine BatchID
     /// @param cid Sub Contract ID for Madicine (if transaction Wholesaler to Distributer)
-    /// @return
     function madicineReceived(
         address batchid,
         address cid
@@ -379,7 +370,6 @@ contract SupplyChain {
     /// @param BatchID Madicine BatchID
     /// @param Shipper Transporter Ethereum Network Address
     /// @param Receiver Distributer Ethereum Network Address
-    /// @return
     function transferMadicineWtoD(
         address BatchID,
         address Shipper,
@@ -450,7 +440,6 @@ contract SupplyChain {
     /// @param BatchID Madicine BatchID
     /// @param Shipper Transporter Ethereum Network Address
     /// @param Receiver Pharma Ethereum Network Address
-    /// @return
     function transferMadicineDtoP(
         address BatchID,
         address Shipper,
@@ -514,7 +503,6 @@ contract SupplyChain {
     /// @dev Madicine Batch Recieved
     /// @param batchid Madicine BatchID
     /// @param cid SubContract ID
-    /// @return
     function madicineRecievedAtPharma(
         address batchid,
         address cid
@@ -549,7 +537,6 @@ contract SupplyChain {
     /// @dev Update Madicine Batch status
     /// @param BatchID Madicine BatchID
     /// @param Status Madicine Batch Status ( sold, expire etc.)
-    /// @return
     function updateSaleStatus(
         address BatchID,
         uint Status
@@ -593,7 +580,7 @@ contract SupplyChain {
     /// @notice
     /// @dev Get Madicine BatchID by indexed value of stored data
     /// @param index Index Number
-    /// @return ,Madicine BatchID
+    /// @return Madicine BatchID
     function getBatchIdByIndexP(uint index) public view returns(address BatchID){
         require(
             UsersDetails[msg.sender].role == roles.pharma,
@@ -650,7 +637,6 @@ contract RawMatrials {
     /// @param Quant Number of units in a package
     /// @param Shpr Transporter Ethereum Network Address
     /// @param Rcvr Manufacturer Ethereum Network Address
-    /// @return
     constructor (
         address Splr,
         bytes32 Des,
@@ -707,7 +693,6 @@ contract RawMatrials {
     /// @notice
     /// @dev Pick Package by Associate Transporter
     /// @param shpr Transporter Ethereum Network Address
-    /// @return
     function pickPackage(
         address shpr
     ) public {
@@ -726,7 +711,6 @@ contract RawMatrials {
     /// @notice
     /// @dev Received Package Status Update By Associated Manufacturer
     /// @param manu Manufacturer Ethereum Network Address
-    /// @return
     function receivedPackage(
         address manu
     ) public {
@@ -800,7 +784,6 @@ contract Madicine {
     /// @param Shpr Transporter Ethereum Network Address
     /// @param Rcvr Receiver Ethereum Network Address
     /// @param RcvrType Receiver Type either Wholesaler(1) or Distributer(2)
-    /// @return
     constructor(
         address Manu,
         bytes32 Des,
@@ -865,7 +848,6 @@ contract Madicine {
     /// @notice
     /// @dev Pick Madicine Batch by Associate Transporter
     /// @param shpr Transporter Ethereum Network Address
-    /// @return
     function pickPackage(
         address shpr
     ) public {
@@ -890,7 +872,6 @@ contract Madicine {
     /// @notice
     /// @dev Received Madicine Batch by Associated Wholesaler or Distributer
     /// @param Rcvr Wholesaler or Distributer
-    /// @return
     function receivedPackage(
         address Rcvr
     ) public
@@ -922,7 +903,6 @@ contract Madicine {
     /// @dev Update Madicine Batch transaction Status(Pick) in between Wholesaler and Distributer
     /// @param receiver Distributer Ethereum Network Address
     /// @param sender Wholesaler Ethereum Network Address
-    /// @return
     function sendWD(
         address receiver,
         address sender
@@ -938,7 +918,6 @@ contract Madicine {
     /// @notice
     /// @dev Update Madicine Batch transaction Status(Recieved) in between Wholesaler and Distributer
     /// @param receiver Distributer
-    /// @return
     function recievedWD(
         address receiver
     ) public {
@@ -953,7 +932,6 @@ contract Madicine {
     /// @dev Update Madicine Batch transaction Status(Pick) in between Distributer and Pharma
     /// @param receiver Pharma Ethereum Network Address
     /// @param sender Distributer Ethereum Network Address
-    /// @return
     function sendDP(
         address receiver,
         address sender
@@ -969,7 +947,6 @@ contract Madicine {
     /// @notice
     /// @dev Update Madicine Batch transaction Status(Recieved) in between Distributer and Pharma
     /// @param receiver Pharma Ethereum Network Address
-    /// @return
     function recievedDP(
         address receiver
     ) public {
@@ -1008,7 +985,6 @@ contract MadicineW_D {
     /// @param Sender Wholesaler Ethereum Network Address
     /// @param Shipper Transporter Ethereum Network Address
     /// @param Receiver Distributer Ethereum Network Address
-    /// @return
     constructor(
         address BatchID,
         address Sender,
@@ -1029,7 +1005,6 @@ contract MadicineW_D {
     /// @dev Pick Madicine Batch by Associated Transporter
     /// @param BatchID Madicine BatchID
     /// @param Shipper Transporter Ethereum Network Address
-    /// @return
     function pickWD(
         address BatchID,
         address Shipper
@@ -1050,7 +1025,6 @@ contract MadicineW_D {
     /// @dev Recieved Madicine Batch by Associate Distributer
     /// @param BatchID Madicine BatchID
     /// @param Receiver Distributer Ethereum Network Address
-    /// @return
     function recieveWD(
         address BatchID,
         address Receiver
@@ -1104,7 +1078,6 @@ contract MadicineD_P {
     /// @param Sender Distributer Ethereum Network Address
     /// @param Shipper Transporter Ethereum Network Address
     /// @param Receiver Pharma Ethereum Network Address
-    /// @return
     constructor(
         address BatchID,
         address Sender,
@@ -1123,7 +1096,6 @@ contract MadicineD_P {
     /// @dev Pick Madicine Batch by Associated Transporter
     /// @param BatchID Madicine BatchID
     /// @param Shipper Transporter Ethereum Network Address
-    /// @return
     function pickDP(
         address BatchID,
         address Shipper
@@ -1144,7 +1116,6 @@ contract MadicineD_P {
     /// @dev Recieved Madicine Batch by Associate Distributer
     /// @param BatchID Madicine BatchID
     /// @param Receiver Pharma Ethereum Network Address
-    /// @return
     function recieveDP(
         address BatchID,
         address Receiver
