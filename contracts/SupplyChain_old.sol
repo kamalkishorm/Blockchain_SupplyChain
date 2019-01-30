@@ -1,6 +1,6 @@
 pragma solidity >=0.4.25 <0.6.0;
 
-contract SupplyChain {
+contract SupplyChain_OLD {
 
     constructor() public {
         Owner = msg.sender;
