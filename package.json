@@ -12,6 +12,11 @@
   },
   "devDependencies": {},
   "scripts": {
+    "docs:init": "node_modules/.bin/doxity init",
+    "docs:compile": "node_modules/.bin/doxity compile",
+    "docs:develop": "node_modules/.bin/doxity develop",
+    "docs:publish": "node_modules/.bin/doxity publish",
+    "docs:build": "node_modules/.bin/doxity build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
