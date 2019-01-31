@@ -23,8 +23,8 @@ export default class Index extends Component {
     return { web3: this.web3 }
   }
   render() {
-    const onIndex = prefixLink('/Blockchain_SupplyChain/') === this.props.location.pathname
-    const docsRoute = this.props.route.childRoutes.find(route => route.path === prefixLink('/Blockchain_SupplyChain/docs/'))
+    const onIndex = prefixLink('/') === this.props.location.pathname
+    const docsRoute = this.props.route.childRoutes.find(route => route.path === prefixLink('/docs/'))
     const childRoutes = docsRoute && docsRoute.childRoutes
     const docsPath = childRoutes && childRoutes[0].path
 
@@ -32,7 +32,7 @@ export default class Index extends Component {
       <div style={{ paddingTop: '60px' }} className="pusher">
         <Menu inverted fixed="top">
           <Container>
-            <Menu.Item header as={Link} to={prefixLink('/Blockchain_SupplyChain/')}>
+            <Menu.Item header as={Link} to={prefixLink('/')}>
               {config.name}
               <Label color="grey">{config.version}</Label>
             </Menu.Item>

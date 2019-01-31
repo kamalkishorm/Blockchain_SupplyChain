@@ -24,7 +24,7 @@ export default class ContractDropdown extends Component {
               <Dropdown.Item
                 key={page.path}
                 as={Link}
-                to={prefixLink("/Blockchain_SupplyChain"+page.path)}
+                to={prefixLink(page.path)}
                 text={page.data.name}
                 onClick={this.handleClick}
               />
