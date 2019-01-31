@@ -3,7 +3,7 @@ This project showcases the journey of Medicine on blockchain.
 
 The Pharmaceutical supply chain is the sequence of activities and process to bring raw drugs and matrials from supplier(farms) to processed medicine in Pharm.
 
-#### Problems in Exixting System 
+#### Problems in Exixting System
 ---
 - Shipment visibility
 - Expiration
@@ -22,7 +22,7 @@ The Pharmaceutical supply chain is the sequence of activities and process to bri
 
 #### Application Workflow Diagram
 ---
-![](docs/Blockchain_Pharmaceutical_SupplyChain.png)
+![](https://raw.githubusercontent.com/kamalkishorm/Blockchain_SupplyChain/master/assets/flow/Blockchain_Pharmaceutical_SupplyChain.png)
 
 #### Roles
 ---
@@ -37,7 +37,7 @@ The Pharmaceutical supply chain is the sequence of activities and process to bri
 **Admin :** Admin register new users and assigne roles accourding to there work.
 **Supplier :** Supplier supply raw materials manufacturer by creating new batch with details of farm.
 **Transporter :** Transporter are responsible for shipping packages/consignment form one stage to other.
-**Manufacturer :** Manufacturer is responsible to manufacturer new medicine batches for shipping to either Wholesaler or Distribute, by updating information of raw materials details(like batchID and consumption units) that are use to manufacture new batch medicine and quantity. 
+**Manufacturer :** Manufacturer is responsible to manufacturer new medicine batches for shipping to either Wholesaler or Distribute, by updating information of raw materials details(like batchID and consumption units) that are use to manufacture new batch medicine and quantity.
 **Wholesaler :** Wholesaler is reponsible to receive medicine from Manufacturer and validate medicine quality, than transfer to Distributer.
 **Distrubuter :** Distributer is reponsible to distribute medicne to pharms and do varification on medicine quality and condition.
 **Pharma :** Pharma is reponsible to provide right medicine to customer as per doctor priscribed and update medicine status.
@@ -49,7 +49,7 @@ The Pharmaceutical supply chain is the sequence of activities and process to bri
 - Ropsten test network ( use ropsten faucet to get ethers on ropsten network )
 - Truffle
 - Infura
-- Web3JS 
+- Web3JS
 - AngularJS
 
 #### Prerequisites
@@ -71,20 +71,20 @@ cd Blockchain_SupplyChain/
 **Update truffle.js **
 
 ```
-module.exports = 
+module.exports =
 {
-    networks: 
+    networks:
     {
-	    development: 
+	    development:
 		{
 	   		host: "localhost",
 	   		port: 8545,
 	   		network_id: "*" // Match any network id
-		} 
+		}
     },
     ropsten: {
     	provider: function() {
-                var mnemonic = "letter casino spread lawn water toward extend public gasp turn wave bone";//put ETH wallet 12 mnemonic code	
+                var mnemonic = "letter casino spread lawn water toward extend public gasp turn wave bone";//put ETH wallet 12 mnemonic code
                 return new HDWalletProvider(mnemonic, "https://ropsten.infura.io/v3/"+infuraKey);
 		    },
         gas: 8000000,
@@ -97,7 +97,7 @@ Go to your project folder in terminal then execute :
 
 ```
 rm -rf build/
-truffle compile 
+truffle compile
 truffle migrate --network ropsten reset
 ```
 **Please note:**
@@ -160,4 +160,15 @@ Summary
 > Total deployments:   2
 > Final cost:          0.40695624 ETH
 
+```
+
+#### Blockchain SupplyChain UI:
+---
+**Setting up SupplyChain UI:**
+
+```
+git clone https://github.com/kamalkishorm/Pharmaceutical_Supplychain-UI.git
+cd Pharmaceutical_Supplychain-UI/
+npm i
+ng serve
 ```
