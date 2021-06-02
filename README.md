@@ -68,7 +68,7 @@ The Pharmaceutical supply chain is the sequence of activities and process to bri
 git clone https://github.com/kamalkishorm/Blockchain_SupplyChain.git
 cd Blockchain_SupplyChain/
 ```
-**Update truffle.js **
+**Update truffle-config.js **
 
 ```
 module.exports =
